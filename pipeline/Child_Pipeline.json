@@ -38,11 +38,66 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"batchCount": 5,
+					"activities": [
+						{
+							"name": "Call Logic App",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"headers": {
+									"Content-Type": "application/json"
+								},
+								"url": "https://prod-85.eastus.logic.azure.com:443/workflows/9f50fa354f3d4f399129641dc384be59/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=TSiUtCycJCVv9IM2Twc6ALEUt0-0S5clJn2nV66e-gI",
+								"body": {
+									"value": "{\n    \"email\": \"@{item().email_id}\",\n    \"subject\": \"@{pipeline().parameters.Subject}\",\n    \"body\": \"@{pipeline().parameters.Body}\"\n}",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
 			"FileName": {
 				"type": "string"
+			},
+			"Subject": {
+				"type": "string",
+				"defaultValue": "Data Engineering "
+			},
+			"Body": {
+				"type": "string",
+				"defaultValue": "Hello buddy"
 			}
 		},
 		"annotations": []

@@ -56,8 +56,7 @@
 						"value": "@activity('Lookup1').output.value",
 						"type": "Expression"
 					},
-					"isSequential": false,
-					"batchCount": 5,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Call Logic App",
@@ -81,6 +80,22 @@
 									"value": "@concat(\n'{',\n'\"email\":\"', item().email_id, '\",',\n'\"subject\":\"', pipeline().parameters.Subject, '\",',\n'\"body\":\"',\n\n'Hi ', item().name, ',<br/><br/>',\n\n'I hope you''re doing well.<br/><br/>',\n\n'I came across your profile while exploring opportunities at <b>',\nitem().company_name,\n'</b> and wanted to reach out regarding any <b>Data Engineer openings</b> within your team.<br/><br/>',\n\n'I am currently working as a Data Engineer at SmartRecon Technologies, where I design and build scalable data platforms using <b>Azure Data Factory</b>, <b>Databricks</b>, <b>PySpark</b>, <b>SQL</b>, <b>Delta Lake</b>, and <b>Azure Data Lake</b>. My experience includes developing <b>large-scale ETL/ELT pipelines</b> processing millions of daily records, implementing <b>metadata-driven frameworks</b>, optimizing distributed data workloads, and supporting <b>enterprise-grade financial reporting systems</b>.<br/><br/>',\n\n'Some highlights of my experience include:<br/>',\n\n'&#8226; <b>Processing 4–5 million daily transactional records</b> through production-grade data pipelines.<br/>',\n\n'&#8226; <b>Building metadata-driven ingestion frameworks</b> that significantly reduced manual effort.<br/>',\n\n'&#8226; <b>Improving Delta Lake query performance</b> through optimization techniques such as Z-Ordering and file compaction.<br/>',\n\n'&#8226; <b>Working with Data Warehousing, Dimensional Modeling, and real-time streaming architectures.</b><br/><br/>',\n\n'Additionally, I have solved <b>650+ LeetCode problems</b>, achieved a <b>1950 rating (Top 3% globally)</b>, and maintain a strong focus on <b>problem-solving and system design</b>.<br/><br/>',\n\n'I am currently an <b>Immediate Joiner</b> and actively looking for my next opportunity. If there are any relevant openings within your team, I would greatly appreciate the opportunity to connect and discuss how I can contribute.<br/><br/>',\n\n'Thank you for your time and consideration.<br/><br/>',\n\n'Best Regards,<br/>',\n'Pratyush Sahoo<br/><br/>',\n\n'<b>Phone:</b> +91-9556102777<br/>',\n'<b>Email:</b> pratyush.sahoo2k26@gmail.com<br/>',\n'<b>LinkedIn:</b> https://www.linkedin.com/in/pratyush-sahoo-a3a360243/<br/>',\n'<b>Resume:</b> https://drive.google.com/file/d/1q95LymUAgfV5gJCjvcW9i32HicyLC9F2/view<br/>',\n'<b>LeetCode:</b> https://leetcode.com/u/PratTheCode/<br/>',\n'<b>Notice Period:</b> Immediate Joiner',\n\n'\"',\n'}'\n)",
 									"type": "Expression"
 								}
+							}
+						},
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "Call Logic App",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 10
 							}
 						}
 					]

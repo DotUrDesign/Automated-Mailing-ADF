@@ -1,0 +1,15 @@
+{
+	"name": "data-fac-pps",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "92c47b5e-795e-45f6-a13b-64aa4c9106b1",
+		"tenantId": "ecbf74f8-ff4e-4cf3-8355-9585df03152c"
+	}
+}

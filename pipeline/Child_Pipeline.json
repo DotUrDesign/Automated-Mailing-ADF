@@ -78,7 +78,7 @@
 								},
 								"url": "https://prod-85.eastus.logic.azure.com:443/workflows/9f50fa354f3d4f399129641dc384be59/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=TSiUtCycJCVv9IM2Twc6ALEUt0-0S5clJn2nV66e-gI",
 								"body": {
-									"value": "{\n    \"email\": \"@{item().email_id}\",\n    \"subject\": \"@{pipeline().parameters.Subject}\",\n    \"body\": \"@{pipeline().parameters.Body}\"\n}",
+									"value": "@concat(\n'{',\n'\"email\":\"', item().email_id, '\",',\n'\"subject\":\"', pipeline().parameters.Subject, '\",',\n'\"body\":\"',\n'Hi ', item().name, ',<br/><br/>',\n'I hope you''re doing well.<br/><br/>',\n\n'I came across your profile while exploring opportunities at ',\nitem().company_name,\n' and wanted to reach out regarding any Data Engineer openings within your team.<br/><br/>',\n\n'I am currently working as a Data Engineer at SmartRecon Technologies, where I design and build scalable data platforms using Azure Data Factory, Databricks, PySpark, SQL, Delta Lake, and Azure Data Lake.<br/><br/>',\n\n'Some highlights of my experience include:<br/>',\n'• Processing 4–5 million daily transactional records through production-grade data pipelines.<br/>',\n'• Building metadata-driven ingestion frameworks that significantly reduced manual effort.<br/>',\n'• Improving Delta Lake query performance through optimization techniques such as Z-Ordering and file compaction.<br/>',\n'• Working with Data Warehousing, Dimensional Modeling, and real-time streaming architectures.<br/><br/>',\n\n'Additionally, I have solved 650+ LeetCode problems, achieved a 1950 rating (Top 3% globally), and maintain a strong focus on problem-solving and system design.<br/><br/>',\n\n'I am currently an Immediate Joiner and actively looking for my next opportunity. If there are any relevant openings within your team, I would greatly appreciate the opportunity to connect and discuss how I can contribute.<br/><br/>',\n\n'Thank you for your time and consideration.<br/><br/>',\n\n'Best Regards,<br/>',\n'Pratyush Sahoo<br/><br/>',\n\n'Phone: +91-9556102777<br/>',\n'Email: pratyush.sahoo2k26@gmail.com<br/>',\n'LinkedIn: https://www.linkedin.com/in/pratyush-sahoo-a3a360243/<br/>',\n'Resume: https://drive.google.com/file/d/1q95LymUAgfV5gJCjvcW9i32HicyLC9F2/view<br/>',\n'LeetCode: https://leetcode.com/u/PratTheCode/<br/>',\n'Notice Period: Immediate Joiner',\n'\"',\n'}'\n)",
 									"type": "Expression"
 								}
 							}
@@ -93,7 +93,7 @@
 			},
 			"Subject": {
 				"type": "string",
-				"defaultValue": "Data Engineering "
+				"defaultValue": "Data Engineer | 2.5+ Years Experience | Immediate Joiner"
 			},
 			"Body": {
 				"type": "string",
